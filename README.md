@@ -1,6 +1,6 @@
 # Assignments
 
-# Day 1 Problem Statement:
+## Day 1 Problem Statement:
 You are required to create a program, which calculates the GST (Goods & Services Tax) incurred by different types of goods & commodities.
  Different categories of goods incur different GST rates, as defined in the table below:
   Category (Items)
