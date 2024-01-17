@@ -16,3 +16,10 @@ You are required to create a program, which calculates the GST (Goods & Services
   Inputs and Outputs for your program:
 ● Input - The input string for your program will be the number of units being purchased, type of item, and the initial unit price of the item.
 ● Output - The output of your program will be the net GST amount per unit and the final selling price of the items.
+
+## Day 2 Task: 
+User should be able to add different categories,
+Refactor the code to apply OOPS concepts and it should follow single responsibility principle.
+
+## Day 3 Task:
+Refactor the code to fit the mvc model design.
