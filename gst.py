@@ -1,10 +1,4 @@
-class Item:
-    def __init__(self, units, item_type, unit_price):
-        self.units = units
-        self.item_type = item_type
-        self.unit_price = unit_price
-
-class GSTCalculator:
+class GST:
     def __init__(self):
         self.gst_rates = {
             "Food grains": 0,
@@ -14,8 +8,19 @@ class GSTCalculator:
         }
         self.items = []
 
-    def add_item(self, item):
-        self.items.append(item)
+    def add_item(self,units,item_type,unit_price):
+        self.items.append(units,item_type,unit_price)
+
+    def add_category(self,category, gst_rate):
+        self.gst_rates[category] = gst_rate
+
+    @staticmethod
+    def calculate_net_gst_per_unit(gst_rate, unit_price):
+        return (gst_rate/ 100) * unit_price
+
+    def calculate_final_selling_price(self,gst_rate, unit_price):
+        net_gst_per_unit= self.calculate_net_gst_per_unit(gst_rate,unit_price)
+        return unit_price + net_gst_per_unit
 
     def calculate_total_gst(self):
         total_net_gst = 0
@@ -29,7 +34,7 @@ class GSTCalculator:
             total_net_gst += net_gst_per_unit * item.units
             total_final_price += final_price_per_unit * item.units
 
-            print(f"{item.item_type}: Net GST per unit - {net_gst_per_unit}, Final selling price - {final_price_per_unit}")
+            print(f"{item.item_type}: Net GST per unit-{net_gst_per_unit},Final selling price - {final_price_per_unit}")
 
         return round(total_net_gst, 2), round(total_final_price, 2)
 
@@ -44,9 +49,18 @@ def main():
                 break
 
             item_type = input("Enter the type of item: ").capitalize()
-            unit_price = float(input("Enter the initial unit price: "))
 
-            item = Item(units, item_type, unit_price)
+            if item_type not in gst_calculator.gst_rates:
+                # Dynamically add new category
+                new_category = input("New category! Enter GST rate for the category: ")
+                gst_calculator.add_category(item_type, float(new_category))
+
+                unit_price = float(input("Enter the initial unit price for the new category: "))
+                item = Item(units, item_type, unit_price)
+            else:
+                unit_price = float(input("Enter the initial unit price: "))
+                item = Item(units, item_type, unit_price)
+
             gst_calculator.add_item(item)
 
         except ValueError:
