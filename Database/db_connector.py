@@ -1,4 +1,3 @@
-# db_connector.py
 import psycopg2
 
 class DatabaseConnector:
@@ -17,3 +16,10 @@ class DatabaseConnector:
         else:
             self.cursor.execute(query, params)
         self.connection.commit()
+
+    def fetch_all(self,query):
+        self.cursor.execute(query)
+        return self.cursor.fetchall()
+
+    def close_connection(self):
+        self.connection.close()
