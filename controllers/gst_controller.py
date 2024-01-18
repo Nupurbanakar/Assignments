@@ -1,4 +1,4 @@
-from model.Product import Product
+from model.item import Product
 
 class GSTController:
     def __init__(self, model, view):

@@ -1,5 +1,5 @@
-from view.GSTView import GSTView
-from controllers.GSTController import GSTController
+from view.gst_view import GSTView
+from controllers.gst_controller import GSTController
 
 def main():
     model = []
