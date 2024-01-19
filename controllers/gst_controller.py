@@ -1,4 +1,6 @@
-from model.item import Product
+from model.item import Item
+from database.db_connector import DatabaseConnector
+
 
 class GSTController:
     def __init__(self, model, view):
@@ -10,6 +12,7 @@ class GSTController:
             "Electronics": 18,
             "Cosmetics": 28
         }
+    db_connector = DatabaseConnector(host='localhost', user='root', port='3306', password='', database='gst_db')
 
     @staticmethod
     def calculate_net_gst_per_unit(item, gst_rate):
@@ -20,7 +23,7 @@ class GSTController:
         return item.unit_price + net_gst_per_unit
 
     def add_item(self, units, item_type, unit_price):
-        item = Product(units, item_type, unit_price)
+        item = Item(units, item_type, unit_price)
         self.model.append(item)  # Append the created Product to the model list
 
     def add_category(self, category, gst_rate):

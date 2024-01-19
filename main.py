@@ -1,10 +1,28 @@
 from view.gst_view import GSTView
 from controllers.gst_controller import GSTController
+from repository.item_repository import ItemRepository
+from repository.category_repository import CategoryRepository
+import mysql.connector
 
 def main():
     model = []
     view = GSTView()
     controller = GSTController(model, view)
+
+    self.connection = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="",
+        database="gst_db",
+        port="3306"
+    )
+    self.cursor = self.connection.cursor()
+
+    item_repo = ItemRepository(db_url)
+    category_repo = CategoryRepository(db_url)
+
+    item_repo.add_item(item_type='Electronics', unit_price=1000, units=5)
+    category_repo.add_category(name='Electronics', gst_rate=18)
 
     while True:
         try:
