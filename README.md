@@ -23,3 +23,6 @@ Refactor the code to apply OOPS concepts and it should follow single responsibil
 
 ## Day 3 Task:
 Refactor the code to fit the mvc model design.
+
+## Day 4 & 5 Task:
+Implement Database Connection
